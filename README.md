@@ -9,8 +9,8 @@ As there are many privacy constraints involved with using real observational dat
 
 
 ### The Skills
-This portfolio includes
-- SQL data cleaning and preliminary exploratory data analysis
+This preliminary portfolio includes
+- SQL data cleaning and exploratory data analysis
 - R code for training, fitting, and evaluating an XGBoost model
 - A Tableau Public [set of dashboards](https://public.tableau.com/views/30DayReadmissionRiskHealthGuardDataset/TitlePage?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) for data visualization
 
