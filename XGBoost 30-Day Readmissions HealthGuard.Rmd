@@ -17,7 +17,7 @@ library("tidyverse")
 ```
 ### Importing our data
 
-```
+```{r}
 rra_df <- read_csv("workspace/readmissions_cleaned.csv")
 ```
 ### Some quick variable plots to describe the categorical data
@@ -95,6 +95,7 @@ eval_metric = "logloss"
 
 ### Using XGBoost's cross-validation function
 ### Let's calculate the best number of rounds for this model.
+
 ```{r}
 xgbcv <- xgb.cv(
 params = params,
@@ -112,6 +113,7 @@ maximize = FALSE
 ### Best iteration = 22
 
 ### Training the model
+
 ```{r}
 xgb1 <- xgb.train(
   params = params,
@@ -131,10 +133,12 @@ preds <- predict(xgb1, dtest)
 ```
 
 ### Setting an output threshold for the predictions
+
 ```{r}
 binary_preds <- ifelse(preds > 0.5, 1, 0)
 ```
 ### Calculating Accuracy
+
 ```{r}
 accuracy <- mean(binary_preds == y_test)
 print(paste("Test Accuracy:", accuracy))
