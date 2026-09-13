@@ -58,3 +58,7 @@ This preliminary portfolio includes
   The average number of medications for these patients is 25.09. The average number of lab procedures is 49.74.
 
 ### R: XGBoost Modeling for 30-Day Readmission Risk Factors
+XGBoost is a powerful machine-learning algorithm frequently used to predict patient hospital readmission risk with high accuracy. Read more about similar uses of this package on actual clinical data [here](https://pmc.ncbi.nlm.nih.gov/articles/PMC11311788/), [here](https://ieeexplore.ieee.org/document/11041492), or [here](https://pubmed.ncbi.nlm.nih.gov/40945246/).
+
+### Tableau: Dashboards and Data Visualization
+Visit Tableau Public for [dashboards and data visualizations](https://public.tableau.com/views/30DayReadmissionRiskHealthGuardDataset/TitlePage?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link).
