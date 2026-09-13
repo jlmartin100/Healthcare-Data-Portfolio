@@ -22,27 +22,37 @@ This preliminary portfolio includes
 
 ### SQL: Exploratory Data Analysis
 **What diagnoses do we have in the dataset? How many patients fall in each?**
+
   There are ten diagnoses included in this dataset, with the three largest cohorts being Type 2 diabetes, hypertension, and lipidemias.
 
 **What is the baseline readmission rate?**
-  This patient sample has a readmission rate of 27%.
+
+  The entire patient sample has a readmission rate of 27%.
 
 **What is the breakdown by gender in the dataset?**
-The distribution is relatively even, with 49% female, 48% male, and 1% other.
+
+  The distribution is relatively even, with 49% female, 48% male, and 1% other.
 
 **What is the age distribution?**
-The distribution has a right skew toward older age, with the largest number of patients in the 70-79 age group at 3345 individuals.
+
+  The distribution has a right skew toward older age, with the largest number of patients in the 70-79 age group at 3345 individuals.
 
 **What is the breakdown by admission type?**
-50% of patients were admitted via emergency, 30% as elective, and 19% as urgent.
+
+  50% of patients were admitted via emergency, 30% as elective, and 19% as urgent.
 
 **What about data on prior admissions?**
-Roughly half of the patients in the sample have no prior admissions. The next largest group had 1 prior admission.
+
+  Roughly half of the patients in the sample have no prior admissions. The average number of prior admissions is 1.02.
 
 **What do we know about length of stay?**
-The weighted average length of stay for this sample is 4.98 days.
+
+  The weighted average length of stay for this sample is 4.98 days.
 
 **How about insurance type?**
-Private insurance covers 50% of the patients in this sample, and Medicare covers another 30%. The remaining patients are covered by Medicaid or are self-pay.
 
+  Private insurance covers 50% of the patients in this sample, and Medicare covers another 30%. The remaining patients are covered by Medicaid or are self-pay.
 
+**What else does the dataset tell us?**
+
+  The average number of medications for these patients is 25.09. The average number of lab procedures is 49.74.
