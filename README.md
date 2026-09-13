@@ -56,3 +56,5 @@ This preliminary portfolio includes
 **What else does the dataset tell us?**
 
   The average number of medications for these patients is 25.09. The average number of lab procedures is 49.74.
+
+### R: XGBoost Modeling for 30-Day Readmission Risk Factors
