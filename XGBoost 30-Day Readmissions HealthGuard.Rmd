@@ -18,17 +18,47 @@ library("tidyverse")
 ### Importing our data
 
 ```{r}
-rra_df <- read_csv("workspace/readmissions_cleaned.csv")
+rra_df <- read_csv("readmissions_cleaned.csv")
 ```
 ### Some quick variable plots to describe the categorical data
 
 ```{r}
 base_plot = ggplot(rra_df)
 
-base_plot + geom_bar(aes(x=gender))
-base_plot + geom_bar(aes(x=insurance_type))
-base_plot + geom_bar(aes(x=admission_type))
-base_plot + geom_bar(aes(x=discharge_disposition))
+base_plot + geom_bar(aes(x=gender, fill = gender)) +
+  theme_minimal() +
+  scale_fill_manual("legend", 
+        values = c("male" = "#76B7B2", "female" = "#EDC948", "other" = "#76B7B2")
+        ) +
+  labs(title = "Gender Distribution",
+       x = "Gender",
+       y = "Patient Count")
+base_plot + geom_bar(aes(x=insurance_type, fill = insurance_type)) +
+  theme_minimal() +
+  scale_fill_manual("legend", 
+        values = c("self-pay" = "#76B7B2", "private" = "#EDC948", 
+                   "medicare" = "#EDC948", "medicaid" = "#76B7B2")
+        ) +
+  labs(title = "Insurance Type",
+       x = "Insurance Type",
+       y = "Patient Count")
+base_plot + geom_bar(aes(x=admission_type, fill = admission_type)) +
+  theme_minimal() +
+  scale_fill_manual("legend",
+        values = c("urgent" = "#76B7B2","elective" = "#76B7B2", "emergency" = "#EDC948")
+        ) +
+  labs(title = "Admission Type",
+       x = "Admission Type",
+       y = "Patient Count")
+base_plot + geom_bar(aes(x=discharge_disposition, fill = discharge_disposition)) +
+  theme_minimal() +
+  scale_fill_manual("legend",
+                    values = c("home" = "#EDC948", "transfer" = "#76B7B2", 
+                               "rehabilitation" = "#76B7B2", "expired" = "#76B7B2")
+                    ) +
+  labs(title = "Discharge Disposition",
+       x = "Discharge Disposition",
+       y = "Patient Count")
 ```
 ### Converting our categories to factors
 
@@ -44,6 +74,11 @@ rra_df$primary_diagnosis_code <- factor(rra_df$primary_diagnosis_code)
 
 ```{r}
 rra_df <- rra_df %>% select(-patient_id, -diagnosis_desc, -chapter_code, -days_to_readmission)
+```
+
+### Dropping deceased patients from the data frame
+```{r}
+rra_df = rra_df %>% filter(!(discharge_disposition == "expired"))
 ```
 
 ### Splitting the data frame into test and train sets
@@ -110,7 +145,7 @@ maximize = FALSE
 )
 ```
 
-### Best iteration = 22
+### Best iteration = 23
 
 ### Training the model
 
@@ -118,7 +153,7 @@ maximize = FALSE
 xgb1 <- xgb.train(
   params = params,
   data = dtrain,
-  nrounds = 22,
+  nrounds = 23,
   evals = list(val = dtest, train = dtrain),
   print_every_n = 10,
   early_stopping_rounds = 10,
@@ -153,5 +188,45 @@ print(importance_matrix)
 ### Plotting the Importance Matrix
 
 ```{r}
-xgb.plot.importance(importance_matrix)
+imp_df = xgb.importance(model = xgb1) %>%
+  as.data.frame() %>%
+  head(10)
 ```
+```{r}
+clean_labels <- c(
+"num_lab_procedures" = "# Lab Procedures",
+"age" = "Age",
+"num_medications" = "# Medications",
+"time_in_hospital" = "Length of Stay",
+"hospital_id" = "Hospital ID",
+"has_comorbidity" = "Has Comorbidity",
+"num_prior_admissions" = "# Prior Admissions",
+"insurance_typemedicare" = "Insurance Type: Medicare",
+"gendermale" = "Gender: Male",
+"insurance_typeprivate" = "Insurance Type: Private"
+)
+```
+
+```{r}
+imp_df <- imp_df %>%
+  mutate(
+    CleanName = ifelse(Feature %in% names(clean_labels), clean_labels[Feature], Feature),
+    CleanName = fct_reorder(CleanName, Gain)
+  )
+```
+
+```{r}
+ggplot(imp_df, aes(x = Gain, y = CleanName)) +
+  geom_col(fill = "#76B7B2") +
+  theme_minimal(base_size = 12) +
+  labs(
+    title = "Feature Importance (Gain)",
+    x = "Relative Contribution",
+    y = NULL
+) +
+  theme(
+    axis.text.y = element_text(face = "bold"),
+    panel.grid.major.y = element_blank()
+) 
+```
+  
