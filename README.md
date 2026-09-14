@@ -33,6 +33,9 @@ This preliminary portfolio includes
 
   The distribution is relatively even, with 49% female, 48% male, and 1% other.
 
+  <img width="700" height="432" alt="gender labeled" src="https://github.com/user-attachments/assets/af254877-f831-4772-81d7-08deabdaefdd" />
+
+
 **What is the age distribution?**
 
   The distribution has a right skew toward older age, with the largest number of patients in the 70-79 age group at 3345 individuals.
@@ -40,6 +43,9 @@ This preliminary portfolio includes
 **What is the breakdown by admission type?**
 
   50% of patients were admitted via emergency, 30% as elective, and 19% as urgent.
+
+  <img width="700" height="432" alt="admission type labeled" src="https://github.com/user-attachments/assets/80bfab5d-836b-46de-b990-c88b0ba1343a" />
+
 
 **What about data on prior admissions?**
 
@@ -53,12 +59,20 @@ This preliminary portfolio includes
 
   Private insurance covers 50% of the patients in this sample, and Medicare covers another 30%. The remaining patients are covered by Medicaid or are self-pay.
 
+  <img width="700" height="432" alt="insurance type labeled" src="https://github.com/user-attachments/assets/4d2fa5b5-5b74-4222-9a54-42320c7e0c75" />
+
+
 **What else does the dataset tell us?**
 
   The average number of medications for these patients is 25.09. The average number of lab procedures is 49.74.
 
 ### R: XGBoost Modeling for 30-Day Readmission Risk Factors
 XGBoost is a powerful machine-learning algorithm frequently used to predict patient hospital readmission risk with high accuracy. Read more about similar uses of this package on actual clinical data [here](https://pmc.ncbi.nlm.nih.gov/articles/PMC11311788/), [here](https://ieeexplore.ieee.org/document/11041492), or [here](https://pubmed.ncbi.nlm.nih.gov/40945246/).
+
+The result of the model predicts readmission within 30 days with a 72.7% accuracy. The risk factors it calculates with are presented in the graphic below.
+
+<img width="700" height="432" alt="Feature Importance" src="https://github.com/user-attachments/assets/56849524-8437-45b5-ad42-c545a6102238" />
+
 
 ### Tableau: Dashboards and Data Visualization
 Visit Tableau Public for [dashboards and data visualizations](https://public.tableau.com/views/30DayReadmissionRiskHealthGuardDataset/TitlePage?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link).
